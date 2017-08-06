@@ -1,0 +1,11 @@
+//PushButton{TextLabel{text{Hello}}}
+
+Gauge{
+	armFraction{0.84}
+}
+
+/*
+ImageLabel{
+	image{morda_img_gauge_arrow}
+}
+*/
