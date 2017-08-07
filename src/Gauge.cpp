@@ -42,17 +42,28 @@ void Gauge::layOut() {
 	auto arrowDim = this->arrow->dim();
 	real armLength = arrowDim.x * this->armFraction;
 	ASSERT(armLength > 0)
-	auto scale = (this->rect().d / 2) / armLength;
+	auto scale = (std::max(this->rect().d.x, this->rect().d.y) / 2) / armLength;
 	
-	this->arrowQuadTexture = this->arrow->get(arrowDim.compMul(scale));
+	this->arrowQuadTexture = this->arrow->get(arrowDim * scale);
 }
+
 
 void Gauge::render(const Matr4r& matrix) const {
 	ASSERT(this->arrowQuadTexture)
 	
+	if(this->arrowQuadTexture->dim().x <= 0 || this->armFraction <= 0){
+		return;
+	}
+	
 	Matr4r matr(matrix);
 	matr.translate(this->rect().d / 2);
+	matr.scale(this->rect().d / 2);
 	matr.rotate(this->startAngleRad + (this->endAngleRad - this->startAngleRad) * this->fraction());
+	{
+		auto div = this->arrowQuadTexture->dim().x * this->armFraction;
+		ASSERT(div >= 0)
+		matr.scale(1 / div);
+	}
 	matr.scale(this->arrowQuadTexture->dim());
 	matr.translate(-(1 - this->armFraction), -0.5);
 	
