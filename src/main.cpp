@@ -1,4 +1,5 @@
 #include <mordavokne/AppFactory.hpp>
+#include <morda/widgets/slider/Slider.hpp>
 
 #include "Gauge.hpp"
 
@@ -19,6 +20,19 @@ public:
 		auto c = morda::Morda::inst().inflater.inflate(
 				*this->createResourceFileInterface("res/main.gui")
 			);
+		
+		{
+			auto gauge = c->findChildByNameAs<morda::Gauge>("gauge");
+			ASSERT(gauge)
+			auto slider = c->findChildByNameAs<morda::AreaSlider>("gauge_slider");
+			ASSERT(slider)
+			auto weakGauge = utki::makeWeak(gauge);
+			slider->fractionChange = [weakGauge](morda::FractionWidget& s){
+				if(auto g = weakGauge.lock()){
+					g->setFraction(s.fraction());
+				}
+			};
+		}
 //		
 		morda::Morda::inst().setRootWidget(
 //				morda::inst().inflater.inflate(*stob::parse("PushButton{TextLabel{text{Hello}}}"))

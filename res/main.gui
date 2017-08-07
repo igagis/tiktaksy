@@ -1,11 +1,18 @@
-//PushButton{TextLabel{text{Hello}}}
-
-Gauge{
-	armFraction{0.84}
+Row{
+	Gauge{
+		name{gauge}
+		layout{
+			weight{1}
+			dy{max}
+		}
+		armFraction{0.84}
+		startAngle{225}
+		endAngle{-45}
+	}
+	VerticalSlider{
+		name{gauge_slider}
+		layout{
+			dy{max}
+		}
+	}
 }
-
-/*
-ImageLabel{
-	image{morda_img_gauge_arrow}
-}
-*/

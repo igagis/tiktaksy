@@ -15,6 +15,9 @@ class Gauge :
 	std::shared_ptr<morda::ResImage> arrow;
 	std::shared_ptr<const morda::ResImage::QuadTexture> arrowQuadTexture;
 	real armFraction;
+	
+	real startAngleRad;
+	real endAngleRad;
 public:
 	Gauge(const stob::Node* chain = nullptr);
 	
