@@ -4,6 +4,10 @@ this_name := tiktaksy
 
 this_srcs += $(call prorab-src-dir,src)
 
+ifeq ($(debug), true)
+    this_cxxflags += -DDEBUG
+endif
+
 this_cxxflags += -Wall #enable all warnings
 this_cxxflags += -Wno-comment #no warnings on nested comments
 this_cxxflags += -funsigned-char #the 'char' type is unsigned
@@ -16,6 +20,6 @@ this_cxxflags += -g #include debugging symbols
 this_cxxflags += -std=c++11
 
 
-this_ldlibs += -lmordavokne-opengl2 -lstdc++ -lmorda -lstob -rdynamic -lm
+this_ldlibs += -lmordavokne-opengl2 -lstdc++ -lmorda -lstob -lpapki -rdynamic -lm
 
 $(eval $(prorab-build-app))

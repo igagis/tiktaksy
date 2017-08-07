@@ -12,12 +12,12 @@ public:
 	{
 		morda::inst().initStandardWidgets(*this->createResourceFileInterface());
 		
-		morda::inst().resMan.mountResPack(*this->createResourceFileInterface("res/"));
+		morda::inst().resMan.mountResPack(*this->createResourceFileInterface("res/main.res"));
 		
 		morda::inst().inflater.addWidget<morda::Gauge>("Gauge");
 		
 		auto c = morda::Morda::inst().inflater.inflate(
-				*this->createResourceFileInterface("res/main.gui.stob")
+				*this->createResourceFileInterface("res/main.gui")
 			);
 //		
 		morda::Morda::inst().setRootWidget(
