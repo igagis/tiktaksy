@@ -1,13 +1,75 @@
 Row{
-	Gauge{
-		name{gauge}
+	defs{
+		Margins{ left top right bottom weightLeft weightRight weightTop weightBottom
+			Row{
+				Widget{
+					layout{
+						dx{@{left}}
+						weight{@{weightLeft}}
+					}
+				}
+				Column{
+					layout{
+						weight{1} dy{max}
+					}
+					Widget{
+						layout{
+							dy{@{top}}
+							weight{@{weightTop}}
+						}
+					}
+					Pile{
+						layout{
+							weight{1} dx{max}
+						}
+						@{children}
+					}
+					Widget{
+						layout{
+							dy{@{bottom}}
+							weight{@{weightBottom}}
+						}
+					}
+				}
+				Widget{
+					layout{
+						dx{@{right}}
+						weight{@{weightRight}}
+					}
+				}
+			}
+		}
+	}
+
+	Pile{
 		layout{
 			weight{1}
-			dy{max}
+			dy{min}
 		}
-		armFraction{0.84}
-		startAngle{225}
-		endAngle{-45}
+		ImageLabel{
+			image{morda_img_gauge_scale}
+			keepAspectRatio{true}
+			layout{
+				dx{fill} dy{min}
+			}
+		}
+
+		Margins{
+			defs{w{0.08}}
+			layout{dx{fill} dy{fill}}
+			weightLeft{@{w}}
+			weightRight{@{w}}
+			weightTop{@{w}}
+			weightBottom{@{w}}
+
+			Gauge{
+				name{gauge}
+				layout{dx{fill} dy{fill}}
+				armFraction{0.75}
+				startAngle{225}
+				endAngle{-45}
+			}
+		}
 	}
 	VerticalSlider{
 		name{gauge_slider}
