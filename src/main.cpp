@@ -13,7 +13,7 @@ public:
 	{
 		morda::inst().initStandardWidgets(*this->createResourceFileInterface());
 		
-		morda::inst().resMan.mountResPack(*this->createResourceFileInterface("res/main.res"));
+		morda::inst().resMan.mountResPack(*this->createResourceFileInterface("res/"));
 		
 		morda::inst().inflater.addWidget<morda::Gauge>("Gauge");
 		
