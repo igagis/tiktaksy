@@ -14,6 +14,10 @@ class Gauge :
 {
 	std::shared_ptr<morda::ResImage> arrow;
 	std::shared_ptr<const morda::ResImage::QuadTexture> arrowQuadTexture;
+	
+	std::shared_ptr<morda::ResImage> shadow;
+	std::shared_ptr<const morda::ResImage::QuadTexture> shadowQuadTexture;
+	
 	real armFraction;
 	
 	real startAngleRad;

@@ -21,15 +21,15 @@
     <filter
        inkscape:collect="always"
        style="color-interpolation-filters:sRGB"
-       id="filter4618"
-       x="-0.031818181"
+       id="filter4549"
+       x="-0.03181818"
        width="1.0636364"
-       y="-0.52500063"
-       height="2.0500011">
+       y="-0.52500062"
+       height="2.0500012">
       <feGaussianBlur
          inkscape:collect="always"
          stdDeviation="0.578776"
-         id="feGaussianBlur4620" />
+         id="feGaussianBlur4551" />
     </filter>
   </defs>
   <sodipodi:namedview
@@ -40,8 +40,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="7.919596"
-     inkscape:cx="87.016634"
-     inkscape:cy="13.046738"
+     inkscape:cx="89.736404"
+     inkscape:cy="12.604796"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -63,7 +63,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -73,7 +73,7 @@
      id="layer1"
      transform="translate(1.3890625,-292.96511)">
     <path
-       style="opacity:0.8;fill:#4b1515;fill-opacity:1;stroke:#711f1f;stroke-width:0.66145831;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4618)"
+       style="opacity:0.8;fill:#6e2020;fill-opacity:1;stroke:#360f0f;stroke-width:0.66145831;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4549)"
        d="m 43.65625,295.4125 v 0.52917 L 0,297 v -2.64583 z"
        id="rect942"
        inkscape:connector-curvature="0"
