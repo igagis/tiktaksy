@@ -41,7 +41,9 @@ void Gauge::layOut() {
 	ASSERT(this->arrow)
 	auto arrowDim = this->arrow->dim();
 	real armLength = arrowDim.x * this->armFraction;
-	ASSERT(armLength > 0)
+	if(armLength <= 0){
+		return;
+	}
 	auto scale = (std::max(this->rect().d.x, this->rect().d.y) / 2) / armLength;
 	
 	this->arrowQuadTexture = this->arrow->get(arrowDim * scale);
