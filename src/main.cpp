@@ -11,14 +11,14 @@ public:
 					return mordavokne::App::WindowParams(kolme::Vec2ui(320, 480));
 				}())
 	{
-		morda::inst().initStandardWidgets(*this->createResourceFileInterface());
+		morda::inst().initStandardWidgets(*this->getResFile());
 		
-		morda::inst().resMan.mountResPack(*this->createResourceFileInterface("res/"));
+		morda::inst().resMan.mountResPack(*this->getResFile("res/"));
 		
 		morda::inst().inflater.addWidget<morda::Gauge>("Gauge");
 		
 		auto c = morda::Morda::inst().inflater.inflate(
-				*this->createResourceFileInterface("res/main.gui")
+				*this->getResFile("res/main.gui")
 			);
 		
 		{
