@@ -4,7 +4,7 @@ Row{
 			weight{1}
 			dy{min}
 		}
-		ImageLabel{
+		Image{
 			image{morda_img_gauge_scale}
 			keepAspectRatio{true}
 			layout{
