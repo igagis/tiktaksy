@@ -87,7 +87,7 @@ void Gauge::render(const Matr4r& matrix) const {
 	
 	Matr4r mmm;
 	mmm.identity();
-	mmm.rotate(this->startAngleRad + (this->endAngleRad - this->startAngleRad) * this->fraction());
+	mmm.rotate(-(this->startAngleRad + (this->endAngleRad - this->startAngleRad) * this->fraction()));
 	{
 		auto div = this->arrowQuadTexture->dim().x * this->armFraction;
 		ASSERT(div >= 0)
@@ -100,7 +100,7 @@ void Gauge::render(const Matr4r& matrix) const {
 		const auto shadowOffset = real(0.025f);
 		
 		Matr4r m(matr);
-		m.rightMulBy(Matr4r().identity().translate(shadowOffset, -shadowOffset) * mmm);
+		m.rightMulBy(Matr4r().identity().translate(shadowOffset, shadowOffset) * mmm);
 		m.scale(this->shadowQuadTexture->dim());
 		m.translate(-(1 - this->armFraction) * arrowFraction - (1 - arrowFraction) / 2, -0.5);
 		this->shadowQuadTexture->render(m);
