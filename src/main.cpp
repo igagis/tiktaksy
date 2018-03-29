@@ -1,5 +1,5 @@
 #include <mordavokne/AppFactory.hpp>
-#include <morda/widgets/slider/Slider.hpp>
+#include <morda/widgets/slider/ScrollBar.hpp>
 
 #include "Gauge.hpp"
 
@@ -22,9 +22,9 @@ public:
 			);
 		
 		{
-			auto gauge = c->findChildByNameAs<morda::Gauge>("gauge");
+			auto gauge = c->findByNameAs<morda::Gauge>("gauge");
 			ASSERT(gauge)
-			auto slider = c->findChildByNameAs<morda::AreaSlider>("gauge_slider");
+			auto slider = c->findByNameAs<morda::FractionBandWidget>("gauge_slider");
 			ASSERT(slider)
 			auto weakGauge = utki::makeWeak(gauge);
 			slider->fractionChange = [weakGauge](morda::FractionWidget& s){

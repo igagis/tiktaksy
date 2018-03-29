@@ -6,7 +6,8 @@ using namespace morda;
 
 Gauge::Gauge(const stob::Node* chain) :
 		Widget(chain),
-		BlendingWidget(chain)
+		BlendingWidget(chain),
+		FractionWidget(chain)
 {
 	if(auto p = morda::getProperty(chain, "arrowImage")){
 		this->arrow = morda::inst().resMan.load<morda::ResImage>(p->value());

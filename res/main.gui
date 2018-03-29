@@ -29,7 +29,7 @@ Row{
 			}
 		}
 	}
-	VerticalSlider{
+	VScrollBar{
 		name{gauge_slider}
 		layout{
 			dy{max}

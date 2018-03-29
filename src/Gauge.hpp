@@ -1,10 +1,10 @@
 #pragma once
 
-#include <morda/widgets/core/Widget.hpp>
+#include <morda/widgets/Widget.hpp>
 #include <morda/widgets/base/BlendingWidget.hpp>
 #include <morda/widgets/base/FractionWidget.hpp>
 
-#include <morda/resources/ResImage.hpp>
+#include <morda/res/ResImage.hpp>
 
 namespace morda{
 class Gauge :
