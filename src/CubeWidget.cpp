@@ -2,7 +2,13 @@
 
 #include <morda/Morda.hpp>
 
-#include <GL/gl.h>
+#include <utki/config.hpp>
+
+#if M_OS_NAME == M_OS_NAME_ANDROID
+#	include <GLES/gl.h>
+#else
+#	include <GL/gl.h>
+#endif
 
 CubeWidget::CubeWidget(const stob::Node* desc) :
 		Widget(desc)
