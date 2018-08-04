@@ -4,6 +4,8 @@
     <df root="res" name="0">
     </df>
     <df root="src" name="1">
+      <in>CubeWidget.cpp</in>
+      <in>CubeWidget.hpp</in>
       <in>Gauge.cpp</in>
       <in>Gauge.hpp</in>
       <in>main.cpp</in>
@@ -51,6 +53,10 @@
           <preBuildCommand></preBuildCommand>
         </preBuild>
       </makefileType>
+      <item path="src/CubeWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/CubeWidget.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/Gauge.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Gauge.hpp" ex="false" tool="3" flavor2="0">
@@ -91,6 +97,10 @@
           <preBuildCommand></preBuildCommand>
         </preBuild>
       </makefileType>
+      <item path="src/CubeWidget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/CubeWidget.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/Gauge.cpp" ex="false" tool="1" flavor2="8">
         <ccTool flags="0">
         </ccTool>

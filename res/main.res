@@ -9,3 +9,7 @@ morda_img_gauge_arrow_shadow{
 morda_img_gauge_scale{
 	file{gauge_scale.svg}
 }
+
+tex_sample{
+	file{texture.jpg}
+}
