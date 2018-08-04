@@ -1,6 +1,7 @@
 #include <mordavokne/AppFactory.hpp>
 #include <morda/widgets/slider/ScrollBar.hpp>
 #include <morda/widgets/button/PushButton.hpp>
+#include <morda/widgets/slider/ScrollBar.hpp>
 
 #include "Gauge.hpp"
 #include "CubeWidget.hpp"
@@ -27,12 +28,11 @@ public:
 		
 		auto gauge = c->findByNameAs<morda::Gauge>("gauge");
 		ASSERT(gauge)
+		auto weakGauge = utki::makeWeak(gauge);
+		
 		auto slider = c->findByNameAs<morda::FractionBandWidget>("gauge_slider");
 		ASSERT(slider)
-		auto weakGauge = utki::makeWeak(gauge);
-
-
-
+		slider->setBandSizeFraction(0.1);
 
 		auto cube = c->findByNameAs<CubeWidget>("cubeWidget");
 		ASSERT(cube)
@@ -60,6 +60,7 @@ public:
 		
 		slider->setFraction(0.1);
 //		
+		
 		morda::Morda::inst().setRootWidget(
 //				morda::inst().inflater.inflate(*stob::parse("PushButton{TextLabel{text{Hello}}}"))
 				std::move(c)
