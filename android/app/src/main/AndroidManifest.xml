@@ -8,6 +8,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        ></application>
+        >
+
+        <activity
+            android:name="io.github.igagis.libmordavokne.MordaVOkneActivity"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        
+    </application>
 
 </manifest>

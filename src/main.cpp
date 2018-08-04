@@ -65,6 +65,11 @@ public:
 //				morda::inst().inflater.inflate(*stob::parse("PushButton{TextLabel{text{Hello}}}"))
 				std::move(c)
 			);
+
+#if M_OS_NAME == M_OS_NAME_ANDROID
+		this->setFullscreen(true);
+#endif
+
 	}
 };
 
