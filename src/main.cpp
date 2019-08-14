@@ -10,9 +10,12 @@
 class Application : public mordavokne::App{
 public:
 	Application() :
-			App([](){
-					return mordavokne::App::WindowParams(kolme::Vec2ui(320, 480));
-				}())
+			App(
+					"tiktaksy",
+					[](){
+						return mordavokne::App::WindowParams(kolme::Vec2ui(320, 480));
+					}()
+				)
 	{
 		morda::inst().initStandardWidgets(*this->getResFile());
 		
@@ -75,6 +78,6 @@ public:
 
 
 
-std::unique_ptr<mordavokne::App> mordavokne::createApp(int argc, const char** argv, const utki::Buf<std::uint8_t> savedState){
+std::unique_ptr<mordavokne::App> mordavokne::createApp(int argc, const char** argv){
 	return utki::makeUnique<Application>();
 }
