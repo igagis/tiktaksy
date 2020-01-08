@@ -23,13 +23,13 @@ Row{
 			Margins{
 				defs{w{0.08}}
 				layout{dx{fill} dy{fill}}
-				weightLeft{@{w}}
-				weightRight{@{w}}
-				weightTop{@{w}}
-				weightBottom{@{w}}
+				weightLeft{${w}}
+				weightRight{${w}}
+				weightTop{${w}}
+				weightBottom{${w}}
 
 				Gauge{
-					name{gauge}
+					id{gauge}
 					layout{dx{fill} dy{fill}}
 					armFraction{0.75}
 					startAngle{225}
@@ -39,7 +39,7 @@ Row{
 		}
 
 		CubeWidget{
-			name{cubeWidget}
+			id{cubeWidget}
 			layout{
 				dx{fill}
 				dy{0}
@@ -47,7 +47,7 @@ Row{
 			}
 		}
 		PushButton{
-			name{btnToggleSpinning}
+			id{btnToggleSpinning}
 			layout{dx{fill}dy{40pt}}
 			Text{
 				text{"Toggle cube spinning"}
@@ -57,7 +57,7 @@ Row{
 
 
 	VScrollBar{
-		name{gauge_slider}
+		id{gauge_slider}
 		layout{
 			dy{max}
 			dx{50pt}

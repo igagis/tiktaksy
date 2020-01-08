@@ -1,6 +1,6 @@
 #pragma once
 
-#include <morda/widgets/Widget.hpp>
+#include <morda/widgets/widget.hpp>
 #include <morda/widgets/base/BlendingWidget.hpp>
 #include <morda/widgets/base/FractionWidget.hpp>
 

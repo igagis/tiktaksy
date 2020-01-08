@@ -20,6 +20,8 @@ this_cxxflags += -g #include debugging symbols
 this_cxxflags += -std=c++11
 
 
-this_ldlibs += -lmordavokne-opengl2 -lGL -lstdc++ -lmorda -lstob  -rdynamic -lm
+this_ldlibs += -lmordavokne-opengl2 -lGL -lstdc++ -lmorda -lpuu  -rdynamic -lm
+
+this_out_dir := build
 
 $(eval $(prorab-build-app))

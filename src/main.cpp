@@ -7,13 +7,13 @@
 #include "CubeWidget.hpp"
 
 
-class Application : public mordavokne::App{
+class application : public mordavokne::application{
 public:
-	Application() :
-			App(
+	application() :
+			mordavokne::application(
 					"tiktaksy",
 					[](){
-						return mordavokne::App::WindowParams(kolme::Vec2ui(320, 480));
+						return mordavokne::App::WindowParams(r4::vec2ui(320, 480));
 					}()
 				)
 	{
@@ -21,8 +21,8 @@ public:
 		
 		morda::inst().resMan.mountResPack(*this->getResFile("res/"));
 		
-		morda::inst().inflater.addWidget<morda::Gauge>("Gauge");
-		morda::inst().inflater.addWidget<CubeWidget>("CubeWidget");
+		morda::inst().inflater.register_widget<morda::Gauge>("Gauge");
+		morda::inst().inflater.register_widget<CubeWidget>("CubeWidget");
 		
 		auto c = morda::Morda::inst().inflater.inflate(
 				*this->getResFile("res/main.gui")
@@ -78,6 +78,6 @@ public:
 
 
 
-std::unique_ptr<mordavokne::App> mordavokne::createApp(int argc, const char** argv){
-	return utki::makeUnique<Application>();
+std::unique_ptr<mordavokne::application> mordavokne::createApp(int argc, const char** argv){
+	return utki::makeUnique<::application>();
 }

@@ -11,50 +11,50 @@
 #endif
 
 CubeWidget::CubeWidget(const stob::Node* desc) :
-		Widget(desc)
+		widget(desc)
 {
 	std::array<morda::Vec3r, 36> cubePos = {
 		{
-			kolme::Vec3f(-1, -1, 1), kolme::Vec3f(1, -1, 1), kolme::Vec3f(-1, 1, 1),
-			kolme::Vec3f(1, -1, 1), kolme::Vec3f(1, 1, 1), kolme::Vec3f(-1, 1, 1),
+			r4::vec3f(-1, -1, 1), r4::vec3f(1, -1, 1), r4::vec3f(-1, 1, 1),
+			r4::vec3f(1, -1, 1), r4::vec3f(1, 1, 1), r4::vec3f(-1, 1, 1),
 
-			kolme::Vec3f(1, -1, 1), kolme::Vec3f(1, -1, -1), kolme::Vec3f(1, 1, 1),
-			kolme::Vec3f(1, -1, -1), kolme::Vec3f(1, 1, -1), kolme::Vec3f(1, 1, 1),
+			r4::vec3f(1, -1, 1), r4::vec3f(1, -1, -1), r4::vec3f(1, 1, 1),
+			r4::vec3f(1, -1, -1), r4::vec3f(1, 1, -1), r4::vec3f(1, 1, 1),
 
-			kolme::Vec3f(1, -1, -1), kolme::Vec3f(-1, -1, -1), kolme::Vec3f(1, 1, -1),
-			kolme::Vec3f(-1, -1, -1), kolme::Vec3f(-1, 1, -1), kolme::Vec3f(1, 1, -1),
+			r4::vec3f(1, -1, -1), r4::vec3f(-1, -1, -1), r4::vec3f(1, 1, -1),
+			r4::vec3f(-1, -1, -1), r4::vec3f(-1, 1, -1), r4::vec3f(1, 1, -1),
 
-			kolme::Vec3f(-1, -1, -1), kolme::Vec3f(-1, -1, 1), kolme::Vec3f(-1, 1, -1),
-			kolme::Vec3f(-1, -1, 1), kolme::Vec3f(-1, 1, 1), kolme::Vec3f(-1, 1, -1),
+			r4::vec3f(-1, -1, -1), r4::vec3f(-1, -1, 1), r4::vec3f(-1, 1, -1),
+			r4::vec3f(-1, -1, 1), r4::vec3f(-1, 1, 1), r4::vec3f(-1, 1, -1),
 
-			kolme::Vec3f(-1, 1, -1), kolme::Vec3f(-1, 1, 1), kolme::Vec3f(1, 1, -1),
-			kolme::Vec3f(-1, 1, 1), kolme::Vec3f(1, 1, 1), kolme::Vec3f(1, 1, -1),
+			r4::vec3f(-1, 1, -1), r4::vec3f(-1, 1, 1), r4::vec3f(1, 1, -1),
+			r4::vec3f(-1, 1, 1), r4::vec3f(1, 1, 1), r4::vec3f(1, 1, -1),
 
-			kolme::Vec3f(-1, -1, -1), kolme::Vec3f(1, -1, -1), kolme::Vec3f(-1, -1, 1),
-			kolme::Vec3f(-1, -1, 1), kolme::Vec3f(1, -1, -1), kolme::Vec3f(1, -1, 1)
+			r4::vec3f(-1, -1, -1), r4::vec3f(1, -1, -1), r4::vec3f(-1, -1, 1),
+			r4::vec3f(-1, -1, 1), r4::vec3f(1, -1, -1), r4::vec3f(1, -1, 1)
 		}};
 
 	auto posVBO = morda::inst().renderer().factory->createVertexBuffer(utki::wrapBuf(cubePos));
 
-	std::array<kolme::Vec2f, 36> cubeTex = {
+	std::array<r4::vec2f, 36> cubeTex = {
 		{
-			kolme::Vec2f(0, 0), kolme::Vec2f(0, 1), kolme::Vec2f(1, 0),
-			kolme::Vec2f(0, 1), kolme::Vec2f(1, 1), kolme::Vec2f(1, 0),
+			r4::vec2f(0, 0), r4::vec2f(0, 1), r4::vec2f(1, 0),
+			r4::vec2f(0, 1), r4::vec2f(1, 1), r4::vec2f(1, 0),
 
-			kolme::Vec2f(0, 0), kolme::Vec2f(0, 1), kolme::Vec2f(1, 0),
-			kolme::Vec2f(0, 1), kolme::Vec2f(1, 1), kolme::Vec2f(1, 0),
+			r4::vec2f(0, 0), r4::vec2f(0, 1), r4::vec2f(1, 0),
+			r4::vec2f(0, 1), r4::vec2f(1, 1), r4::vec2f(1, 0),
 
-			kolme::Vec2f(0, 0), kolme::Vec2f(0, 1), kolme::Vec2f(1, 0),
-			kolme::Vec2f(0, 1), kolme::Vec2f(1, 1), kolme::Vec2f(1, 0),
+			r4::vec2f(0, 0), r4::vec2f(0, 1), r4::vec2f(1, 0),
+			r4::vec2f(0, 1), r4::vec2f(1, 1), r4::vec2f(1, 0),
 
-			kolme::Vec2f(0, 0), kolme::Vec2f(0, 1), kolme::Vec2f(1, 0),
-			kolme::Vec2f(0, 1), kolme::Vec2f(1, 1), kolme::Vec2f(1, 0),
+			r4::vec2f(0, 0), r4::vec2f(0, 1), r4::vec2f(1, 0),
+			r4::vec2f(0, 1), r4::vec2f(1, 1), r4::vec2f(1, 0),
 			
-			kolme::Vec2f(0, 0), kolme::Vec2f(0, 1), kolme::Vec2f(1, 0),
-			kolme::Vec2f(0, 1), kolme::Vec2f(1, 1), kolme::Vec2f(1, 0),
+			r4::vec2f(0, 0), r4::vec2f(0, 1), r4::vec2f(1, 0),
+			r4::vec2f(0, 1), r4::vec2f(1, 1), r4::vec2f(1, 0),
 
-			kolme::Vec2f(0, 0), kolme::Vec2f(0, 1), kolme::Vec2f(1, 0),
-			kolme::Vec2f(0, 1), kolme::Vec2f(1, 1), kolme::Vec2f(1, 0)
+			r4::vec2f(0, 0), r4::vec2f(0, 1), r4::vec2f(1, 0),
+			r4::vec2f(0, 1), r4::vec2f(1, 1), r4::vec2f(1, 0)
 		}};
 
 	auto texVBO = morda::inst().renderer().factory->createVertexBuffer(utki::wrapBuf(cubeTex));
@@ -79,7 +79,7 @@ void CubeWidget::update(std::uint32_t dt) {
 	
 	this->fpsSecCounter += dt;
 	++this->fps;
-	this->rot %= morda::Quatr().initRot(kolme::Vec3f(1, 2, 1).normalize(), maxSpeed * this->spinSpeed * (float(dt) / 1000));
+	this->rot %= morda::Quatr().initRot(r4::vec3f(1, 2, 1).normalize(), maxSpeed * this->spinSpeed * (float(dt) / 1000));
 	if (this->fpsSecCounter >= 1000) {
 		TRACE_ALWAYS( << "fps = " << std::dec << fps << std::endl)
 				this->fpsSecCounter = 0;
@@ -88,7 +88,7 @@ void CubeWidget::update(std::uint32_t dt) {
 }
 
 void CubeWidget::render(const morda::Matr4r& matrix) const {
-	this->Widget::render(matrix);
+	this->widget::render(matrix);
 
 	float s = 1.5;
 	

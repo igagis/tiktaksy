@@ -1,6 +1,6 @@
 #pragma once
 
-#include <morda/widgets/Widget.hpp>
+#include <morda/widgets/widget.hpp>
 #include <morda/Updateable.hpp>
 #include <morda/res/ResTexture.hpp>
 #include <morda/render/VertexArray.hpp>
