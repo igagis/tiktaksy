@@ -4,57 +4,51 @@
 
 using namespace morda;
 
-Gauge::Gauge(const stob::Node* chain) :
-		Widget(chain),
-		BlendingWidget(chain),
-		FractionWidget(chain)
+Gauge::Gauge(const puu::forest& desc) :
+		Widget(desc),
+		BlendingWidget(desc),
+		FractionWidget(desc)
 {
-	if(auto p = morda::getProperty(chain, "arrowImage")){
-		this->arrow = morda::inst().resMan.load<morda::ResImage>(p->value());
-	}else{
+	bool shadow_attribute_found = false;
+
+	for(const auto& p : desc){
+		if(!is_property(p)){
+			continue;
+		}
+
+		if(p.value == "armFraction"){
+			this->armFraction = morda::get_property_value(p).to_float();
+		}else if(p.value == "startAngle"){
+			auto deg = morda::get_property_value(p).to_float();
+			this->startAngleRad = deg * utki::pi<real>() / real(180);
+		}else if(p.value == "endAngle"){
+			auto deg = morda::get_property_value(p).to_float();
+			this->endAngleRad = deg * utki::pi<real>() / real(180);
+		}else if(p.value == "arrowImage"){
+			this->arrow = morda::inst().resMan.load<morda::ResImage>(morda::get_property_value(p).to_string());
+		}else if(p.value == "shadowImage"){
+			shadow_attribute_found = true;
+			try{
+				this->shadow = morda::inst().resMan.load<morda::ResImage>(morda::get_property_value(p).to_string());
+			}catch(morda::ResourceManager::Exc& e){
+				// do nothing
+			}
+		}
+	}
+
+	if(!this->arrow){
 		this->arrow = morda::inst().resMan.load<morda::ResImage>("morda_img_gauge_arrow");
 	}
-	
-	if(auto p = morda::getProperty(chain, "shadowImage")){
-		try{
-			this->shadow = morda::inst().resMan.load<morda::ResImage>(p->value());
-		}catch(morda::ResourceManager::Exc& e){
-			//do nothing
-		}
-	}else{
+
+	if(!shadow_attribute_found && !this->shadow){
 		this->shadow = morda::inst().resMan.load<morda::ResImage>("morda_img_gauge_arrow_shadow");
 	}
 	
-	if(auto p = morda::getProperty(chain, "armFraction")){
-		this->armFraction = real(p->asFloat());
-	}else{
-		this->armFraction = 1;
-	}
-	
-	{
-		real deg;
-		if(auto p = morda::getProperty(chain, "startAngle")){
-			deg = real(p->asFloat());
-		}else{
-			deg = 200;
-		}
-		this->startAngleRad = deg * utki::pi<real>() / real(180);
-	}
-	
-	{
-		real deg;
-		if(auto p = morda::getProperty(chain, "endAngle")){
-			deg = real(p->asFloat());
-		}else{
-			deg = -20;
-		}
-		this->endAngleRad = deg * utki::pi<real>() / real(180);
-	}
 }
 
 void Gauge::layOut() {
 	ASSERT(this->arrow)
-	auto arrowDim = this->arrow->dim();
+	auto arrowDim = this->arrow->dims();
 	real armLength = arrowDim.x * this->armFraction;
 	
 	if(armLength <= 0){
@@ -66,9 +60,9 @@ void Gauge::layOut() {
 	this->arrowQuadTexture = this->arrow->get(arrowDim * scale);
 	
 	if(this->shadow){
-		TRACE(<< "this->shadow->dim() * scale = " << this->shadow->dim() * scale << std::endl)
-		this->shadowQuadTexture = this->shadow->get(this->shadow->dim() * scale);
-		TRACE(<< "this->shadowQuadTexture->dim() = " << this->shadowQuadTexture->dim() << std::endl)
+		// TRACE(<< "this->shadow->dims() * scale = " << this->shadow->dims() * scale << std::endl)
+		this->shadowQuadTexture = this->shadow->get(this->shadow->dims() * scale);
+		// TRACE(<< "this->shadowQuadTexture->dims() = " << this->shadowQuadTexture->dims() << std::endl)
 	}
 }
 
@@ -76,7 +70,7 @@ void Gauge::layOut() {
 void Gauge::render(const Matr4r& matrix) const {
 	ASSERT(this->arrowQuadTexture)
 	
-	if(!this->arrowQuadTexture->dim().isPositive() || this->armFraction <= 0){
+	if(!this->arrowQuadTexture->dims().isPositive() || this->armFraction <= 0){
 		return;
 	}
 	
@@ -90,19 +84,19 @@ void Gauge::render(const Matr4r& matrix) const {
 	mmm.identity();
 	mmm.rotate(-(this->startAngleRad + (this->endAngleRad - this->startAngleRad) * this->fraction()));
 	{
-		auto div = this->arrowQuadTexture->dim().x * this->armFraction;
+		auto div = this->arrowQuadTexture->dims().x * this->armFraction;
 		ASSERT(div >= 0)
 		mmm.scale(1 / div);
 	}
 	
-	if(this->shadowQuadTexture && this->shadowQuadTexture->dim().isPositive()){
-		auto arrowFraction = this->arrowQuadTexture->dim().x / this->shadowQuadTexture->dim().x;
+	if(this->shadowQuadTexture && this->shadowQuadTexture->dims().isPositive()){
+		auto arrowFraction = this->arrowQuadTexture->dims().x / this->shadowQuadTexture->dims().x;
 		
 		const auto shadowOffset = real(0.025f);
 		
 		Matr4r m(matr);
 		m.rightMulBy(Matr4r().identity().translate(shadowOffset, shadowOffset) * mmm);
-		m.scale(this->shadowQuadTexture->dim());
+		m.scale(this->shadowQuadTexture->dims());
 		m.translate(-(1 - this->armFraction) * arrowFraction - (1 - arrowFraction) / 2, -0.5);
 		this->shadowQuadTexture->render(m);
 	}
@@ -110,7 +104,7 @@ void Gauge::render(const Matr4r& matrix) const {
 	{
 		Matr4r m(matr);
 		m.rightMulBy(mmm);
-		m.scale(this->arrowQuadTexture->dim());
+		m.scale(this->arrowQuadTexture->dims());
 		m.translate(-(1 - this->armFraction), -0.5);
 		this->arrowQuadTexture->render(m);
 	}

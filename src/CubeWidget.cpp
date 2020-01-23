@@ -10,7 +10,7 @@
 #	include <GL/gl.h>
 #endif
 
-CubeWidget::CubeWidget(const stob::Node* desc) :
+CubeWidget::CubeWidget(const puu::forest& desc) :
 		widget(desc)
 {
 	std::array<morda::Vec3r, 36> cubePos = {

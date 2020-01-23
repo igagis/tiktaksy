@@ -18,12 +18,12 @@ class Gauge :
 	std::shared_ptr<morda::ResImage> shadow;
 	std::shared_ptr<const morda::ResImage::QuadTexture> shadowQuadTexture;
 	
-	real armFraction;
+	real armFraction = 1;
 	
-	real startAngleRad;
-	real endAngleRad;
+	real startAngleRad = real(200) * utki::pi<real>() / real(180);;
+	real endAngleRad = real(-20) * utki::pi<real>() / real(180);;
 public:
-	Gauge(const stob::Node* chain = nullptr);
+	Gauge(const puu::forest& desc);
 	
 	void layOut() override;
 	

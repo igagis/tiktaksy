@@ -15,7 +15,7 @@ class CubeWidget :
 public:
 	std::shared_ptr<morda::VertexArray> cubeVAO;
 	
-	CubeWidget(const stob::Node* desc);
+	CubeWidget(const puu::forest& desc);
 	
 	unsigned fps = 0;
 	std::uint32_t fpsSecCounter = 0;

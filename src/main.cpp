@@ -29,18 +29,18 @@ public:
 			);
 	
 		
-		auto gauge = c->findByNameAs<morda::Gauge>("gauge");
+		auto gauge = c->try_get_widget_as<morda::Gauge>("gauge");
 		ASSERT(gauge)
 		auto weakGauge = utki::makeWeak(gauge);
 		
-		auto slider = c->findByNameAs<morda::FractionBandWidget>("gauge_slider");
+		auto slider = c->try_get_widget_as<morda::FractionBandWidget>("gauge_slider");
 		ASSERT(slider)
 		slider->setBandSizeFraction(0.1);
 
-		auto cube = c->findByNameAs<CubeWidget>("cubeWidget");
+		auto cube = c->try_get_widget_as<CubeWidget>("cubeWidget");
 		ASSERT(cube)
 		auto weakCube = utki::makeWeak(cube);
-		auto& btn = c->getByNameAs<morda::PushButton>("btnToggleSpinning");
+		auto& btn = c->get_widget_as<morda::PushButton>("btnToggleSpinning");
 
 		btn.clicked = [weakCube](morda::PushButton& b){
 			if(auto p = weakCube.lock()){
