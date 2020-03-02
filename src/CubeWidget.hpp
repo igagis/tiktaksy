@@ -1,21 +1,21 @@
 #pragma once
 
 #include <morda/widgets/widget.hpp>
-#include <morda/Updateable.hpp>
-#include <morda/res/ResTexture.hpp>
-#include <morda/render/VertexArray.hpp>
+#include <morda/updateable.hpp>
+#include <morda/res/res_texture.hpp>
+#include <morda/render/vertex_array.hpp>
 
 class CubeWidget :
-		public morda::Widget,
-		public morda::Updateable
+		public morda::widget,
+		public morda::updateable
 {
-	std::shared_ptr<morda::ResTexture> tex;
+	std::shared_ptr<morda::res_texture> tex;
 	
-	morda::Quatr rot = morda::Quatr().identity();
+	morda::quaternion rot = morda::quaternion().identity();
 public:
-	std::shared_ptr<morda::VertexArray> cubeVAO;
+	std::shared_ptr<morda::vertex_array> cubeVAO;
 	
-	CubeWidget(const puu::forest& desc);
+	CubeWidget(std::shared_ptr<morda::context> c, const puu::forest& desc);
 	
 	unsigned fps = 0;
 	std::uint32_t fpsSecCounter = 0;
@@ -24,5 +24,5 @@ public:
 	
 	void update(std::uint32_t dt) override;
 	
-	void render(const morda::Matr4r& matrix)const override;
+	void render(const morda::matrix4& matrix)const override;
 };

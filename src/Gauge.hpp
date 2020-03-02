@@ -1,32 +1,32 @@
 #pragma once
 
 #include <morda/widgets/widget.hpp>
-#include <morda/widgets/base/BlendingWidget.hpp>
-#include <morda/widgets/base/FractionWidget.hpp>
+#include <morda/widgets/base/blending_widget.hpp>
+#include <morda/widgets/base/fraction_widget.hpp>
 
-#include <morda/res/ResImage.hpp>
+#include <morda/res/res_image.hpp>
 
 namespace morda{
 class Gauge :
-		public morda::BlendingWidget,
-		public morda::FractionWidget,
-		virtual public morda::Widget
+		public morda::blending_widget,
+		public morda::fraction_widget,
+		virtual public morda::widget
 {
-	std::shared_ptr<morda::ResImage> arrow;
-	std::shared_ptr<const morda::ResImage::QuadTexture> arrowQuadTexture;
+	std::shared_ptr<morda::res_image> arrow;
+	std::shared_ptr<const morda::res_image::texture> arrowQuadTexture;
 	
-	std::shared_ptr<morda::ResImage> shadow;
-	std::shared_ptr<const morda::ResImage::QuadTexture> shadowQuadTexture;
+	std::shared_ptr<morda::res_image> shadow;
+	std::shared_ptr<const morda::res_image::texture> shadowQuadTexture;
 	
 	real armFraction = 1;
 	
 	real startAngleRad = real(200) * utki::pi<real>() / real(180);;
 	real endAngleRad = real(-20) * utki::pi<real>() / real(180);;
 public:
-	Gauge(const puu::forest& desc);
+	Gauge(std::shared_ptr<morda::context> c, const puu::forest& desc);
 	
-	void layOut() override;
+	void lay_out()override;
 	
-	void render(const morda::Matr4r& matrix) const override;
+	void render(const morda::matrix4& matrix) const override;
 };
 }

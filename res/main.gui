@@ -1,34 +1,34 @@
-Row{
-	Column{
+@row{
+	@column{
 		layout{
 			dx{0}
 			dy{fill}
 			weight{1}
 		}
 
-		Pile{
+		@pile{
 			layout{
 				dx{fill}
 				weight{0}
 				dy{min}
 			}
-			Image{
+			@image{
 				image{morda_img_gauge_scale}
-				keepAspectRatio{true}
+				keep_aspect_ratio{true}
 				layout{
 					dx{fill} dy{min}
 				}
 			}
 
-			Margins{
+			@margins{
 				defs{w{0.08}}
 				layout{dx{fill} dy{fill}}
-				weightLeft{${w}}
-				weightRight{${w}}
-				weightTop{${w}}
-				weightBottom{${w}}
+				weight_left{${w}}
+				weight_right{${w}}
+				weight_top{${w}}
+				weight_bottom{${w}}
 
-				Gauge{
+				@Gauge{
 					id{gauge}
 					layout{dx{fill} dy{fill}}
 					armFraction{0.75}
@@ -38,7 +38,7 @@ Row{
 			}
 		}
 
-		CubeWidget{
+		@CubeWidget{
 			id{cubeWidget}
 			layout{
 				dx{fill}
@@ -46,17 +46,17 @@ Row{
 				weight{1}
 			}
 		}
-		PushButton{
+		@push_button{
 			id{btnToggleSpinning}
 			layout{dx{fill}dy{40pt}}
-			Text{
+			@text{
 				text{"Toggle cube spinning"}
 			}
 		}
 	}
 
 
-	VScrollBar{
+	@vertical_scroll_bar{
 		id{gauge_slider}
 		layout{
 			dy{max}
