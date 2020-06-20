@@ -68,7 +68,7 @@ CubeWidget::CubeWidget(std::shared_ptr<morda::context> c, const puu::forest& des
 
 	this->cubeVAO = this->context->renderer->factory->create_vertex_array({posVBO, texVBO}, cubeIndices, morda::vertex_array::mode::triangles);
 
-	this->tex = this->context->loader.load<morda::res_texture>("tex_sample");
+	this->tex = this->context->loader.load<morda::res::texture>("tex_sample");
 	this->rot.identity();
 
 

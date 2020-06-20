@@ -4,7 +4,7 @@
 #include <morda/widgets/base/blending_widget.hpp>
 #include <morda/widgets/base/fraction_widget.hpp>
 
-#include <morda/res/res_image.hpp>
+#include <morda/res/image.hpp>
 
 namespace morda{
 class Gauge :
@@ -12,11 +12,11 @@ class Gauge :
 		public morda::fraction_widget,
 		virtual public morda::widget
 {
-	std::shared_ptr<morda::res_image> arrow;
-	std::shared_ptr<const morda::res_image::texture> arrowQuadTexture;
+	std::shared_ptr<morda::res::image> arrow;
+	std::shared_ptr<const morda::res::image::texture> arrowQuadTexture;
 	
-	std::shared_ptr<morda::res_image> shadow;
-	std::shared_ptr<const morda::res_image::texture> shadowQuadTexture;
+	std::shared_ptr<morda::res::image> shadow;
+	std::shared_ptr<const morda::res::image::texture> shadowQuadTexture;
 	
 	real armFraction = 1;
 	

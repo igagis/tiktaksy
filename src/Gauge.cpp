@@ -25,11 +25,11 @@ Gauge::Gauge(std::shared_ptr<morda::context> c, const puu::forest& desc) :
 			auto deg = morda::get_property_value(p).to_float();
 			this->endAngleRad = deg * utki::pi<real>() / real(180);
 		}else if(p.value == "arrowImage"){
-			this->arrow = this->context->loader.load<morda::res_image>(morda::get_property_value(p).to_string());
+			this->arrow = this->context->loader.load<morda::res::image>(morda::get_property_value(p).to_string());
 		}else if(p.value == "shadowImage"){
 			shadow_attribute_found = true;
 			try{
-				this->shadow = this->context->loader.load<morda::res_image>(morda::get_property_value(p).to_string());
+				this->shadow = this->context->loader.load<morda::res::image>(morda::get_property_value(p).to_string());
 			}catch(std::runtime_error& e){
 				// do nothing
 			}
@@ -37,11 +37,11 @@ Gauge::Gauge(std::shared_ptr<morda::context> c, const puu::forest& desc) :
 	}
 
 	if(!this->arrow){
-		this->arrow = this->context->loader.load<morda::res_image>("morda_img_gauge_arrow");
+		this->arrow = this->context->loader.load<morda::res::image>("morda_img_gauge_arrow");
 	}
 
 	if(!shadow_attribute_found && !this->shadow){
-		this->shadow = this->context->loader.load<morda::res_image>("morda_img_gauge_arrow_shadow");
+		this->shadow = this->context->loader.load<morda::res::image>("morda_img_gauge_arrow_shadow");
 	}
 	
 }
