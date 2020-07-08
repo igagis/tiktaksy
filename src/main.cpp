@@ -39,7 +39,7 @@ public:
 
 		auto cube = c->try_get_widget_as<CubeWidget>("cubeWidget");
 		ASSERT(cube)
-		auto weakCube = utki::makeWeak(cube);
+		auto weakCube = utki::make_weak(cube);
 		auto& btn = c->get_widget_as<morda::push_button>("btnToggleSpinning");
 
 		btn.click_handler = [weakCube, this](morda::push_button& b){
