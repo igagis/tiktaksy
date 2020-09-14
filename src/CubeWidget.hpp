@@ -11,7 +11,7 @@ class CubeWidget :
 {
 	std::shared_ptr<morda::res::texture> tex;
 	
-	morda::quaternion rot = morda::quaternion().identity();
+	morda::quaternion rot = morda::quaternion().set_identity();
 public:
 	std::shared_ptr<morda::vertex_array> cubeVAO;
 	

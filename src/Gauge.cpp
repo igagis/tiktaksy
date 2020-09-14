@@ -49,13 +49,13 @@ Gauge::Gauge(std::shared_ptr<morda::context> c, const puu::forest& desc) :
 void Gauge::lay_out(){
 	ASSERT(this->arrow)
 	auto arrowDim = this->arrow->dims();
-	real armLength = arrowDim.x * this->armFraction;
+	real armLength = arrowDim.x() * this->armFraction;
 	
 	if(armLength <= 0){
 		return;
 	}
 	
-	auto scale = (std::max(this->rect().d.x, this->rect().d.y) / 2) / armLength;
+	auto scale = (std::max(this->rect().d.x(), this->rect().d.y()) / 2) / armLength;
 	
 	this->arrowQuadTexture = this->arrow->get(arrowDim * scale);
 	
@@ -81,21 +81,21 @@ void Gauge::render(const matrix4& matrix) const {
 	matr.scale(this->rect().d / 2);
 	
 	matrix4 mmm;
-	mmm.identity();
+	mmm.set_identity();
 	mmm.rotate(-(this->startAngleRad + (this->endAngleRad - this->startAngleRad) * this->fraction()));
 	{
-		auto div = this->arrowQuadTexture->dims.x * this->armFraction;
+		auto div = this->arrowQuadTexture->dims.x() * this->armFraction;
 		ASSERT(div >= 0)
 		mmm.scale(1 / div);
 	}
 	
 	if(this->shadowQuadTexture && this->shadowQuadTexture->dims.is_positive()){
-		auto arrowFraction = this->arrowQuadTexture->dims.x / this->shadowQuadTexture->dims.x;
+		auto arrowFraction = this->arrowQuadTexture->dims.x() / this->shadowQuadTexture->dims.x();
 		
 		const auto shadowOffset = real(0.025f);
 		
 		matrix4 m(matr);
-		m.right_mul(matrix4().identity().translate(shadowOffset, shadowOffset) * mmm);
+		m.right_mul(matrix4().set_identity().translate(shadowOffset, shadowOffset) * mmm);
 		m.scale(this->shadowQuadTexture->dims);
 		m.translate(-(1 - this->armFraction) * arrowFraction - (1 - arrowFraction) / 2, -0.5);
 		this->shadowQuadTexture->render(m);

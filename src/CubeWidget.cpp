@@ -69,7 +69,7 @@ CubeWidget::CubeWidget(std::shared_ptr<morda::context> c, const puu::forest& des
 	this->cubeVAO = this->context->renderer->factory->create_vertex_array({posVBO, texVBO}, cubeIndices, morda::vertex_array::mode::triangles);
 
 	this->tex = this->context->loader.load<morda::res::texture>("tex_sample");
-	this->rot.identity();
+	this->rot.set_identity();
 
 
 }
@@ -79,7 +79,7 @@ void CubeWidget::update(std::uint32_t dt) {
 	
 	this->fpsSecCounter += dt;
 	++this->fps;
-	this->rot %= morda::quaternion().rotation(r4::vec3f(1, 2, 1).normalize(), maxSpeed * this->spinSpeed * (float(dt) / 1000));
+	this->rot %= morda::quaternion().set_rotation(r4::vec3f(1, 2, 1).normalize(), maxSpeed * this->spinSpeed * (float(dt) / 1000));
 	if (this->fpsSecCounter >= 1000) {
 		TRACE_ALWAYS( << "fps = " << std::dec << fps << std::endl)
 				this->fpsSecCounter = 0;
