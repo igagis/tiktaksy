@@ -4,7 +4,7 @@
 
 using namespace morda;
 
-Gauge::Gauge(std::shared_ptr<morda::context> c, const puu::forest& desc) :
+Gauge::Gauge(std::shared_ptr<morda::context> c, const treeml::forest& desc) :
 		widget(std::move(c), desc),
 		blending_widget(this->context, desc),
 		fraction_widget(this->context, desc)
@@ -95,7 +95,7 @@ void Gauge::render(const matrix4& matrix) const {
 		const auto shadowOffset = real(0.025f);
 		
 		matrix4 m(matr);
-		m.right_mul(matrix4().set_identity().translate(shadowOffset, shadowOffset) * mmm);
+		m *= matrix4().set_identity().translate(shadowOffset, shadowOffset) * mmm;
 		m.scale(this->shadowQuadTexture->dims);
 		m.translate(-(1 - this->armFraction) * arrowFraction - (1 - arrowFraction) / 2, -0.5);
 		this->shadowQuadTexture->render(m);
@@ -103,7 +103,7 @@ void Gauge::render(const matrix4& matrix) const {
 	
 	{
 		matrix4 m(matr);
-		m.right_mul(mmm);
+		m *= mmm;
 		m.scale(this->arrowQuadTexture->dims);
 		m.translate(-(1 - this->armFraction), -0.5);
 		this->arrowQuadTexture->render(m);

@@ -23,7 +23,7 @@ class Gauge :
 	real startAngleRad = real(200) * utki::pi<real>() / real(180);;
 	real endAngleRad = real(-20) * utki::pi<real>() / real(180);;
 public:
-	Gauge(std::shared_ptr<morda::context> c, const puu::forest& desc);
+	Gauge(std::shared_ptr<morda::context> c, const treeml::forest& desc);
 	
 	void lay_out()override;
 	

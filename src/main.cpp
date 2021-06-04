@@ -6,14 +6,13 @@
 #include "Gauge.hpp"
 #include "CubeWidget.hpp"
 
-
 class application : public mordavokne::application{
 public:
 	application() :
 			mordavokne::application(
 					"tiktaksy",
 					[](){
-						return mordavokne::window_params(r4::vec2ui(320, 480));
+						return mordavokne::window_params(r4::vector2<unsigned>(320, 480));
 					}()
 				)
 	{
@@ -76,8 +75,6 @@ public:
 	}
 };
 
-
-
-std::unique_ptr<mordavokne::application> mordavokne::create_application(int argc, const char** argv){
+mordavokne::application_factory app_fac([](auto args){
 	return std::make_unique<::application>();
-}
+});
