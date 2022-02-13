@@ -7,37 +7,42 @@
 			"label": "clean",
 			"type": "shell",
 			"command": "make clean",
-			"problemMatcher": []
+			"problemMatcher": [],
+			"group": "build"
 		},
 		{
 			"label": "build",
 			"type": "shell",
-			"command": "make autojobs=true",
+			"command": "make",
 			"problemMatcher": [
 				"$gcc"
-			]
+			],
+			"group": "build"
 		},
 		{
 			"label": "build_debug",
 			"type": "shell",
-			"command": "make autojobs=true debug=true",
+			"command": "make debug=true",
 			"problemMatcher": [
 				"$gcc"
-			]
+			],
+			"group": "build"
 		},
 		{
 			"label": "run",
 			"type": "shell",
 			"command": "./build/tiktaksy",
 			"problemMatcher": [],
-			"dependsOn": "build"
+			"dependsOn": "build",
+			"group": "build"
 		},
 		{
 			"label": "run_debug",
 			"type": "shell",
 			"command": "./build/tiktaksy",
 			"problemMatcher": [],
-			"dependsOn": "build_debug"
+			"dependsOn": "build_debug",
+			"group": "build"
 		}
 	]
 }
