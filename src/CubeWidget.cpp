@@ -10,8 +10,8 @@
 #	include <GL/gl.h>
 #endif
 
-CubeWidget::CubeWidget(std::shared_ptr<morda::context> c, const treeml::forest& desc) :
-		morda::widget(std::move(c), desc)
+CubeWidget::CubeWidget(const utki::shared_ref<morda::context>& c, const treeml::forest& desc) :
+		morda::widget(c, desc)
 {
 	std::array<morda::vector3, 36> cubePos = {
 		{
@@ -34,7 +34,7 @@ CubeWidget::CubeWidget(std::shared_ptr<morda::context> c, const treeml::forest& 
 			r4::vector3<float>(-1, -1, 1), r4::vector3<float>(1, -1, -1), r4::vector3<float>(1, -1, 1)
 		}};
 
-	auto posVBO = this->context->renderer->factory->create_vertex_buffer(utki::make_span(cubePos));
+	auto posVBO = this->context.get().renderer.get().factory->create_vertex_buffer(utki::make_span(cubePos));
 
 	std::array<r4::vector2<float>, 36> cubeTex = {
 		{
@@ -57,18 +57,18 @@ CubeWidget::CubeWidget(std::shared_ptr<morda::context> c, const treeml::forest& 
 			r4::vector2<float>(0, 1), r4::vector2<float>(1, 1), r4::vector2<float>(1, 0)
 		}};
 
-	auto texVBO = this->context->renderer->factory->create_vertex_buffer(utki::make_span(cubeTex));
+	auto texVBO = this->context.get().renderer.get().factory->create_vertex_buffer(utki::make_span(cubeTex));
 
 	std::array<std::uint16_t, 36> indices = {
 		{
 			0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35
 		}};
 
-	auto cubeIndices = this->context->renderer->factory->create_index_buffer(utki::make_span(indices));
+	auto cubeIndices = this->context.get().renderer.get().factory->create_index_buffer(utki::make_span(indices));
 
-	this->cubeVAO = this->context->renderer->factory->create_vertex_array({posVBO, texVBO}, cubeIndices, morda::vertex_array::mode::triangles);
+	this->cubeVAO = this->context.get().renderer.get().factory->create_vertex_array({posVBO, texVBO}, cubeIndices, morda::vertex_array::mode::triangles).to_shared_ptr();
 
-	this->tex = this->context->loader.load<morda::res::texture>("tex_sample");
+	this->tex = this->context.get().loader.load<morda::res::texture>("tex_sample").to_shared_ptr();
 	this->rot.set_identity();
 
 
@@ -81,8 +81,8 @@ void CubeWidget::update(std::uint32_t dt) {
 	++this->fps;
 	this->rot %= morda::quaternion().set_rotation(r4::vector3<float>(1, 2, 1).normalize(), maxSpeed * this->spinSpeed * (float(dt) / 1000));
 	if (this->fpsSecCounter >= 1000) {
-		TRACE_ALWAYS( << "fps = " << std::dec << fps << std::endl)
-				this->fpsSecCounter = 0;
+		utki::log([&](auto&o){o << "fps = " << std::dec << fps << std::endl;});
+		this->fpsSecCounter = 0;
 		this->fps = 0;
 	}
 }
@@ -105,7 +105,7 @@ void CubeWidget::render(const morda::matrix4& matrix) const {
 
 	glEnable(GL_CULL_FACE);
 
-	this->context->renderer->shader->pos_tex->render(m, *this->cubeVAO, this->tex->tex());
+	this->context.get().renderer.get().shader->pos_tex->render(m, *this->cubeVAO, this->tex->tex());
 
 	glDisable(GL_CULL_FACE);
 }

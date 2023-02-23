@@ -4,8 +4,8 @@
 
 using namespace morda;
 
-Gauge::Gauge(std::shared_ptr<morda::context> c, const treeml::forest& desc) :
-		widget(std::move(c), desc),
+Gauge::Gauge(const utki::shared_ref<morda::context>& c, const treeml::forest& desc) :
+		widget(c, desc),
 		blending_widget(this->context, desc),
 		fraction_widget(this->context, desc)
 {
@@ -25,11 +25,11 @@ Gauge::Gauge(std::shared_ptr<morda::context> c, const treeml::forest& desc) :
 			auto deg = morda::get_property_value(p).to_float();
 			this->endAngleRad = deg * utki::pi<real>() / real(180);
 		}else if(p.value == "arrowImage"){
-			this->arrow = this->context->loader.load<morda::res::image>(morda::get_property_value(p).to_string());
+			this->arrow = this->context.get().loader.load<morda::res::image>(morda::get_property_value(p).to_string()).to_shared_ptr();
 		}else if(p.value == "shadowImage"){
 			shadow_attribute_found = true;
 			try{
-				this->shadow = this->context->loader.load<morda::res::image>(morda::get_property_value(p).to_string());
+				this->shadow = this->context.get().loader.load<morda::res::image>(morda::get_property_value(p).to_string()).to_shared_ptr();
 			}catch(std::runtime_error& e){
 				// do nothing
 			}
@@ -37,11 +37,11 @@ Gauge::Gauge(std::shared_ptr<morda::context> c, const treeml::forest& desc) :
 	}
 
 	if(!this->arrow){
-		this->arrow = this->context->loader.load<morda::res::image>("morda_img_gauge_arrow");
+		this->arrow = this->context.get().loader.load<morda::res::image>("morda_img_gauge_arrow").to_shared_ptr();
 	}
 
 	if(!shadow_attribute_found && !this->shadow){
-		this->shadow = this->context->loader.load<morda::res::image>("morda_img_gauge_arrow_shadow");
+		this->shadow = this->context.get().loader.load<morda::res::image>("morda_img_gauge_arrow_shadow").to_shared_ptr();
 	}
 	
 }
@@ -57,11 +57,11 @@ void Gauge::lay_out(){
 	
 	auto scale = (std::max(this->rect().d.x(), this->rect().d.y()) / 2) / armLength;
 	
-	this->arrowQuadTexture = this->arrow->get(arrowDim * scale);
+	this->arrowQuadTexture = this->arrow->get(arrowDim * scale).to_shared_ptr();
 	
 	if(this->shadow){
 		// TRACE(<< "this->shadow->dims() * scale = " << this->shadow->dims() * scale << std::endl)
-		this->shadowQuadTexture = this->shadow->get(this->shadow->dims() * scale);
+		this->shadowQuadTexture = this->shadow->get(this->shadow->dims() * scale).to_shared_ptr();
 		// TRACE(<< "this->shadowQuadTexture->dims() = " << this->shadowQuadTexture->dims() << std::endl)
 	}
 }

@@ -18,35 +18,35 @@ public:
 	{
 		this->gui.initStandardWidgets(*this->get_res_file());
 		
-		this->gui.context->loader.mount_res_pack(*this->get_res_file("res/"));
+		this->gui.context.get().loader.mount_res_pack(*this->get_res_file("res/"));
 		
-		this->gui.context->inflater.register_widget<morda::Gauge>("Gauge");
-		this->gui.context->inflater.register_widget<CubeWidget>("CubeWidget");
+		this->gui.context.get().inflater.register_widget<morda::Gauge>("Gauge");
+		this->gui.context.get().inflater.register_widget<CubeWidget>("CubeWidget");
 		
-		auto c = this->gui.context->inflater.inflate(
+		auto c = this->gui.context.get().inflater.inflate(
 				*this->get_res_file("res/main.gui")
 			);
 	
 		
-		auto gauge = c->try_get_widget_as<morda::Gauge>("gauge");
+		auto gauge = c.get().try_get_widget_as<morda::Gauge>("gauge");
 		ASSERT(gauge)
 		auto weakGauge = utki::make_weak(gauge);
 		
-		auto slider = c->try_get_widget_as<morda::fraction_band_widget>("gauge_slider");
+		auto slider = c.get().try_get_widget_as<morda::fraction_band_widget>("gauge_slider");
 		ASSERT(slider)
 		slider->set_band_fraction(0.1);
 
-		auto cube = c->try_get_widget_as<CubeWidget>("cubeWidget");
+		auto cube = c.get().try_get_widget_as<CubeWidget>("cubeWidget");
 		ASSERT(cube)
 		auto weakCube = utki::make_weak(cube);
-		auto& btn = c->get_widget_as<morda::push_button>("btnToggleSpinning");
+		auto& btn = c.get().get_widget_as<morda::push_button>("btnToggleSpinning");
 
 		btn.click_handler = [weakCube, this](morda::push_button& b){
 			if(auto p = weakCube.lock()){
 				if(p->is_updating()){
-					this->gui.context->updater->stop(*p);
+					this->gui.context.get().updater.get().stop(*p);
 				}else{
-					this->gui.context->updater->start(p);
+					this->gui.context.get().updater.get().start(p);
 				}
 			}
 		};
@@ -65,7 +65,7 @@ public:
 		
 		this->gui.set_root(
 //				morda::inst().inflater.inflate(*stob::parse("PushButton{TextLabel{text{Hello}}}"))
-				std::move(c)
+				c.to_shared_ptr()
 			);
 
 #if M_OS_NAME == M_OS_NAME_ANDROID
