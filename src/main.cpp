@@ -65,7 +65,7 @@ public:
 		
 		this->gui.set_root(
 //				morda::inst().inflater.inflate(*stob::parse("PushButton{TextLabel{text{Hello}}}"))
-				c.to_shared_ptr()
+				c
 			);
 
 #if M_OS_NAME == M_OS_NAME_ANDROID
