@@ -46,7 +46,7 @@ Gauge::Gauge(const utki::shared_ref<morda::context>& c, const treeml::forest& de
 	
 }
 
-void Gauge::lay_out(){
+void Gauge::on_lay_out(){
 	ASSERT(this->arrow)
 	auto arrowDim = this->arrow->dims();
 	real armLength = arrowDim.x() * this->armFraction;

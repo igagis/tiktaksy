@@ -1,6 +1,6 @@
 #pragma once
 
-#include <morda/widgets/widget.hpp>
+#include <morda/widget.hpp>
 #include <morda/widgets/base/blending_widget.hpp>
 #include <morda/widgets/base/fraction_widget.hpp>
 
@@ -25,7 +25,7 @@ class Gauge :
 public:
 	Gauge(const utki::shared_ref<morda::context>& c, const treeml::forest& desc);
 	
-	void lay_out()override;
+	void on_lay_out()override;
 	
 	void render(const morda::matrix4& matrix) const override;
 };

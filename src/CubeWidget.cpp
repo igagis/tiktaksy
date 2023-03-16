@@ -79,7 +79,7 @@ void CubeWidget::update(std::uint32_t dt) {
 	
 	this->fpsSecCounter += dt;
 	++this->fps;
-	this->rot %= morda::quaternion().set_rotation(r4::vector3<float>(1, 2, 1).normalize(), maxSpeed * this->spinSpeed * (float(dt) / 1000));
+	this->rot *= morda::quaternion().set_rotation(r4::vector3<float>(1, 2, 1).normalize(), maxSpeed * this->spinSpeed * (float(dt) / 1000));
 	if (this->fpsSecCounter >= 1000) {
 		utki::log([&](auto&o){o << "fps = " << std::dec << fps << std::endl;});
 		this->fpsSecCounter = 0;
