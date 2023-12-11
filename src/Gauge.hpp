@@ -20,8 +20,8 @@ class Gauge :
 	
 	real armFraction = 1;
 	
-	real startAngleRad = real(200) * utki::pi<real>() / real(180);;
-	real endAngleRad = real(-20) * utki::pi<real>() / real(180);;
+	real startAngleRad = real(200) * real(utki::pi) / real(180);;
+	real endAngleRad = real(-20) * real(utki::pi) / real(180);;
 public:
 	Gauge(const utki::shared_ref<morda::context>& c, const treeml::forest& desc);
 	

@@ -20,10 +20,10 @@ Gauge::Gauge(const utki::shared_ref<morda::context>& c, const treeml::forest& de
 			this->armFraction = morda::get_property_value(p).to_float();
 		}else if(p.value == "startAngle"){
 			auto deg = morda::get_property_value(p).to_float();
-			this->startAngleRad = deg * utki::pi<real>() / real(180);
+			this->startAngleRad = deg * real(utki::pi) / real(180);
 		}else if(p.value == "endAngle"){
 			auto deg = morda::get_property_value(p).to_float();
-			this->endAngleRad = deg * utki::pi<real>() / real(180);
+			this->endAngleRad = deg * real(utki::pi) / real(180);
 		}else if(p.value == "arrowImage"){
 			this->arrow = this->context.get().loader.load<morda::res::image>(morda::get_property_value(p).to_string()).to_shared_ptr();
 		}else if(p.value == "shadowImage"){
