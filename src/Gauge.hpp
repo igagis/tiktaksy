@@ -1,32 +1,32 @@
 #pragma once
 
-#include <morda/widget.hpp>
-#include <morda/widgets/base/blending_widget.hpp>
-#include <morda/widgets/base/fraction_widget.hpp>
+#include <ruis/widget.hpp>
+#include <ruis/widgets/base/blending_widget.hpp>
+#include <ruis/widgets/base/fraction_widget.hpp>
 
-#include <morda/res/image.hpp>
+#include <ruis/res/image.hpp>
 
-namespace morda{
+namespace ruis{
 class Gauge :
-		public morda::blending_widget,
-		public morda::fraction_widget,
-		virtual public morda::widget
+		public ruis::blending_widget,
+		public ruis::fraction_widget,
+		virtual public ruis::widget
 {
-	std::shared_ptr<morda::res::image> arrow;
-	std::shared_ptr<const morda::res::image::texture> arrowQuadTexture;
+	std::shared_ptr<ruis::res::image> arrow;
+	std::shared_ptr<const ruis::res::image::texture> arrowQuadTexture;
 	
-	std::shared_ptr<morda::res::image> shadow;
-	std::shared_ptr<const morda::res::image::texture> shadowQuadTexture;
+	std::shared_ptr<ruis::res::image> shadow;
+	std::shared_ptr<const ruis::res::image::texture> shadowQuadTexture;
 	
 	real armFraction = 1;
 	
 	real startAngleRad = real(200) * real(utki::pi) / real(180);;
 	real endAngleRad = real(-20) * real(utki::pi) / real(180);;
 public:
-	Gauge(const utki::shared_ref<morda::context>& c, const treeml::forest& desc);
+	Gauge(const utki::shared_ref<ruis::context>& c, const treeml::forest& desc);
 	
 	void on_lay_out()override;
 	
-	void render(const morda::matrix4& matrix) const override;
+	void render(const ruis::matrix4& matrix) const override;
 };
 }

@@ -1,6 +1,6 @@
 #include "CubeWidget.hpp"
 
-#include <morda/context.hpp>
+#include <ruis/context.hpp>
 
 #include <utki/config.hpp>
 
@@ -10,10 +10,10 @@
 #	include <GL/gl.h>
 #endif
 
-CubeWidget::CubeWidget(const utki::shared_ref<morda::context>& c, const treeml::forest& desc) :
-		morda::widget(c, desc)
+CubeWidget::CubeWidget(const utki::shared_ref<ruis::context>& c, const treeml::forest& desc) :
+		ruis::widget(c, desc)
 {
-	std::array<morda::vector3, 36> cubePos = {
+	std::array<ruis::vector3, 36> cubePos = {
 		{
 			r4::vector3<float>(-1, -1, 1), r4::vector3<float>(1, -1, 1), r4::vector3<float>(-1, 1, 1),
 			r4::vector3<float>(1, -1, 1), r4::vector3<float>(1, 1, 1), r4::vector3<float>(-1, 1, 1),
@@ -66,9 +66,9 @@ CubeWidget::CubeWidget(const utki::shared_ref<morda::context>& c, const treeml::
 
 	auto cubeIndices = this->context.get().renderer.get().factory->create_index_buffer(utki::make_span(indices));
 
-	this->cubeVAO = this->context.get().renderer.get().factory->create_vertex_array({posVBO, texVBO}, cubeIndices, morda::vertex_array::mode::triangles).to_shared_ptr();
+	this->cubeVAO = this->context.get().renderer.get().factory->create_vertex_array({posVBO, texVBO}, cubeIndices, ruis::vertex_array::mode::triangles).to_shared_ptr();
 
-	this->tex = this->context.get().loader.load<morda::res::texture>("tex_sample").to_shared_ptr();
+	this->tex = this->context.get().loader.load<ruis::res::texture>("tex_sample").to_shared_ptr();
 	this->rot.set_identity();
 
 
@@ -79,7 +79,7 @@ void CubeWidget::update(std::uint32_t dt) {
 	
 	this->fpsSecCounter += dt;
 	++this->fps;
-	this->rot *= morda::quaternion().set_rotation(r4::vector3<float>(1, 2, 1).normalize(), maxSpeed * this->spinSpeed * (float(dt) / 1000));
+	this->rot *= ruis::quaternion().set_rotation(r4::vector3<float>(1, 2, 1).normalize(), maxSpeed * this->spinSpeed * (float(dt) / 1000));
 	if (this->fpsSecCounter >= 1000) {
 		utki::log([&](auto&o){o << "fps = " << std::dec << fps << std::endl;});
 		this->fpsSecCounter = 0;
@@ -87,18 +87,18 @@ void CubeWidget::update(std::uint32_t dt) {
 	}
 }
 
-void CubeWidget::render(const morda::matrix4& matrix) const {
+void CubeWidget::render(const ruis::matrix4& matrix) const {
 	this->widget::render(matrix);
 
 	float s = 1.5;
 	
-	morda::matrix4 matr(matrix);
+	ruis::matrix4 matr(matrix);
 	matr.scale(this->rect().d / s);
 	matr.translate(s/2, s/2);
 	matr.scale(1, -1);
 	matr.frustum(-2, 2, -1.5, 1.5, 2, 100);
 
-	morda::matrix4 m(matr);
+	ruis::matrix4 m(matr);
 	m.translate(0, 0, -4);
 
 	m.rotate(this->rot);

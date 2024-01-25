@@ -13,7 +13,7 @@
 				dy{min}
 			}
 			@image{
-				image{morda_img_gauge_scale}
+				image{ruis_img_gauge_scale}
 				keep_aspect_ratio{true}
 				lp{
 					dx{fill} dy{min}
@@ -48,7 +48,7 @@
 		}
 		@push_button{
 			id{btnToggleSpinning}
-			lp{dx{fill}dy{40pt}}
+			lp{dx{fill}dy{40pp}}
 			@text{
 				text{"Toggle cube spinning"}
 			}
@@ -60,7 +60,7 @@
 		id{gauge_slider}
 		lp{
 			dy{max}
-			dx{50pt}
+			dx{50pp}
 		}
 	}
 }

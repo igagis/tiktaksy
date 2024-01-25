@@ -1,10 +1,10 @@
 #include "Gauge.hpp"
 
-#include <morda/util/util.hpp>
+#include <ruis/util/util.hpp>
 
-using namespace morda;
+using namespace ruis;
 
-Gauge::Gauge(const utki::shared_ref<morda::context>& c, const treeml::forest& desc) :
+Gauge::Gauge(const utki::shared_ref<ruis::context>& c, const treeml::forest& desc) :
 		widget(c, desc),
 		blending_widget(this->context, desc),
 		fraction_widget(this->context, desc)
@@ -17,19 +17,19 @@ Gauge::Gauge(const utki::shared_ref<morda::context>& c, const treeml::forest& de
 		}
 
 		if(p.value == "armFraction"){
-			this->armFraction = morda::get_property_value(p).to_float();
+			this->armFraction = ruis::get_property_value(p).to_float();
 		}else if(p.value == "startAngle"){
-			auto deg = morda::get_property_value(p).to_float();
+			auto deg = ruis::get_property_value(p).to_float();
 			this->startAngleRad = deg * real(utki::pi) / real(180);
 		}else if(p.value == "endAngle"){
-			auto deg = morda::get_property_value(p).to_float();
+			auto deg = ruis::get_property_value(p).to_float();
 			this->endAngleRad = deg * real(utki::pi) / real(180);
 		}else if(p.value == "arrowImage"){
-			this->arrow = this->context.get().loader.load<morda::res::image>(morda::get_property_value(p).to_string()).to_shared_ptr();
+			this->arrow = this->context.get().loader.load<ruis::res::image>(ruis::get_property_value(p).to_string()).to_shared_ptr();
 		}else if(p.value == "shadowImage"){
 			shadow_attribute_found = true;
 			try{
-				this->shadow = this->context.get().loader.load<morda::res::image>(morda::get_property_value(p).to_string()).to_shared_ptr();
+				this->shadow = this->context.get().loader.load<ruis::res::image>(ruis::get_property_value(p).to_string()).to_shared_ptr();
 			}catch(std::runtime_error& e){
 				// do nothing
 			}
@@ -37,11 +37,11 @@ Gauge::Gauge(const utki::shared_ref<morda::context>& c, const treeml::forest& de
 	}
 
 	if(!this->arrow){
-		this->arrow = this->context.get().loader.load<morda::res::image>("morda_img_gauge_arrow").to_shared_ptr();
+		this->arrow = this->context.get().loader.load<ruis::res::image>("ruis_img_gauge_arrow").to_shared_ptr();
 	}
 
 	if(!shadow_attribute_found && !this->shadow){
-		this->shadow = this->context.get().loader.load<morda::res::image>("morda_img_gauge_arrow_shadow").to_shared_ptr();
+		this->shadow = this->context.get().loader.load<ruis::res::image>("ruis_img_gauge_arrow_shadow").to_shared_ptr();
 	}
 	
 }

@@ -13,7 +13,7 @@ android {
 
         externalNativeBuild {
             cmake {
-                targets "mordavokneapp"
+                targets "ruisapp_application"
 
                 arguments "-DANDROID_STL=c++_shared", "-DANDROID_TOOLCHAIN=clang"
             }
@@ -44,7 +44,7 @@ repositories {
     }
 }
 dependencies {
-    implementation 'io.github.igagis:libmordavokne:+'
+    implementation 'io.github.igagis:libruisapp:+'
 }
 
 

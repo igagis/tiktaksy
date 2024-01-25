@@ -1,21 +1,21 @@
 #pragma once
 
-#include <morda/widget.hpp>
-#include <morda/updateable.hpp>
-#include <morda/res/texture.hpp>
-#include <morda/render/vertex_array.hpp>
+#include <ruis/widget.hpp>
+#include <ruis/updateable.hpp>
+#include <ruis/res/texture.hpp>
+#include <ruis/render/vertex_array.hpp>
 
 class CubeWidget :
-		public morda::widget,
-		public morda::updateable
+		public ruis::widget,
+		public ruis::updateable
 {
-	std::shared_ptr<morda::res::texture> tex;
+	std::shared_ptr<ruis::res::texture> tex;
 	
-	morda::quaternion rot = morda::quaternion().set_identity();
+	ruis::quaternion rot = ruis::quaternion().set_identity();
 public:
-	std::shared_ptr<morda::vertex_array> cubeVAO;
+	std::shared_ptr<ruis::vertex_array> cubeVAO;
 	
-	CubeWidget(const utki::shared_ref<morda::context>& c, const treeml::forest& desc);
+	CubeWidget(const utki::shared_ref<ruis::context>& c, const treeml::forest& desc);
 	
 	unsigned fps = 0;
 	std::uint32_t fpsSecCounter = 0;
@@ -24,5 +24,5 @@ public:
 	
 	void update(std::uint32_t dt) override;
 	
-	void render(const morda::matrix4& matrix)const override;
+	void render(const ruis::matrix4& matrix)const override;
 };

@@ -15,7 +15,7 @@ file(GLOB_RECURSE srcs "../../src/*.cpp")
 link_directories( build/ndkLibs/${ANDROID_ABI}/ )
 
 add_library( # Specifies the name of the library.
-             mordavokneapp # this has to be 'mordavokneapp' so that MordaVOkneActivity loads that named .so
+             ruisapp_application # this has to be 'ruisapp_application' so that RuisappActivity loads that named .so
 
              # Sets the library as a shared library.
              SHARED
@@ -28,6 +28,6 @@ add_library( # Specifies the name of the library.
 include_directories( build/ndkLibs/include/ )
 
 target_link_libraries(
-        mordavokneapp
-        mordavokne morda-opengles2-ren morda log GLESv2 stob papki svgren svgdom unikod png z jpeg freetype2 EGL android nitki mikroxml cairo pixman
+        ruisapp_application
+        ruisapp ruis-render-opengles ruis log GLESv2 stob papki svgren svgdom unikod png z jpeg freetype2 EGL android nitki mikroxml cairo pixman
     )

@@ -19,7 +19,7 @@ this_cxxflags += -fstrict-aliasing # in order to comply with the c++ standard mo
 this_cxxflags += -g # include debugging symbols
 this_cxxflags += -std=c++17
 
-this_ldlibs += -lmordavokne-opengl -lutki -lGL -lstdc++ -lmorda -ltreeml  -rdynamic -lm
+this_ldlibs += -lruisapp-opengl -lutki -lGL -lstdc++ -lruis -ltreeml  -rdynamic -lm
 
 this_out_dir := build
 

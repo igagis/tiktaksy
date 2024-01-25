@@ -13,7 +13,7 @@ Row{
 				dy{min}
 			}
 			Image{
-				image{morda_img_gauge_scale}
+				image{ruis_img_gauge_scale}
 				keepAspectRatio{true}
 				lp{
 					dx{fill} dy{min}
