@@ -15,7 +15,7 @@ class CubeWidget :
 public:
 	std::shared_ptr<ruis::vertex_array> cubeVAO;
 	
-	CubeWidget(const utki::shared_ref<ruis::context>& c, const treeml::forest& desc);
+	CubeWidget(const utki::shared_ref<ruis::context>& c, const tml::forest& desc);
 	
 	unsigned fps = 0;
 	std::uint32_t fpsSecCounter = 0;

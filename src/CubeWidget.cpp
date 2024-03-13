@@ -10,7 +10,7 @@
 #	include <GL/gl.h>
 #endif
 
-CubeWidget::CubeWidget(const utki::shared_ref<ruis::context>& c, const treeml::forest& desc) :
+CubeWidget::CubeWidget(const utki::shared_ref<ruis::context>& c, const tml::forest& desc) :
 		ruis::widget(c, desc)
 {
 	std::array<ruis::vector3, 36> cubePos = {

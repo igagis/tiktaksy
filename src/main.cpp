@@ -1,6 +1,6 @@
 #include <ruisapp/application.hpp>
 #include <ruis/widgets/slider/scroll_bar.hpp>
-#include <ruis/widgets/button/push_button.hpp>
+#include <ruis/widgets/button/base/push_button.hpp>
 #include <ruis/widgets/slider/scroll_bar.hpp>
 
 #include "Gauge.hpp"

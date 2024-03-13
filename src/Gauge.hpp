@@ -23,7 +23,7 @@ class Gauge :
 	real startAngleRad = real(200) * real(utki::pi) / real(180);;
 	real endAngleRad = real(-20) * real(utki::pi) / real(180);;
 public:
-	Gauge(const utki::shared_ref<ruis::context>& c, const treeml::forest& desc);
+	Gauge(const utki::shared_ref<ruis::context>& c, const tml::forest& desc);
 	
 	void on_lay_out()override;
 	
