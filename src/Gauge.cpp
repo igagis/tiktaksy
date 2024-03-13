@@ -25,11 +25,11 @@ Gauge::Gauge(const utki::shared_ref<ruis::context>& c, const tml::forest& desc) 
 			auto deg = ruis::get_property_value(p).to_float();
 			this->endAngleRad = deg * real(utki::pi) / real(180);
 		}else if(p.value == "arrowImage"){
-			this->arrow = this->context.get().loader.load<ruis::res::image>(ruis::get_property_value(p).string).to_shared_ptr();
+			this->arrow = this->context.get().loader.load<ruis::res::image>(ruis::get_property_value(p).string);
 		}else if(p.value == "shadowImage"){
 			shadow_attribute_found = true;
 			try{
-				this->shadow = this->context.get().loader.load<ruis::res::image>(ruis::get_property_value(p).string).to_shared_ptr();
+				this->shadow = this->context.get().loader.load<ruis::res::image>(ruis::get_property_value(p).string);
 			}catch(std::runtime_error& e){
 				// do nothing
 			}
@@ -37,11 +37,11 @@ Gauge::Gauge(const utki::shared_ref<ruis::context>& c, const tml::forest& desc) 
 	}
 
 	if(!this->arrow){
-		this->arrow = this->context.get().loader.load<ruis::res::image>("ruis_img_gauge_arrow").to_shared_ptr();
+		this->arrow = this->context.get().loader.load<ruis::res::image>("ruis_img_gauge_arrow");
 	}
 
 	if(!shadow_attribute_found && !this->shadow){
-		this->shadow = this->context.get().loader.load<ruis::res::image>("ruis_img_gauge_arrow_shadow").to_shared_ptr();
+		this->shadow = this->context.get().loader.load<ruis::res::image>("ruis_img_gauge_arrow_shadow");
 	}
 	
 }
