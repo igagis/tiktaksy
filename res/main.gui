@@ -1,7 +1,7 @@
 @row{
 	@column{
 		lp{
-			dx{0}
+			dx{fill}
 			dy{fill}
 			weight{1}
 		}
@@ -42,7 +42,7 @@
 			id{cubeWidget}
 			lp{
 				dx{fill}
-				dy{0}
+				dy{fill}
 				weight{1}
 			}
 		}

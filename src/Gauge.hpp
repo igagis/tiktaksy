@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ruis/widget.hpp>
+#include <ruis/widgets/widget.hpp>
 #include <ruis/widgets/base/blending_widget.hpp>
 #include <ruis/widgets/base/fraction_widget.hpp>
 
