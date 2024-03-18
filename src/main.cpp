@@ -75,6 +75,6 @@ public:
 	}
 };
 
-ruisapp::application_factory app_fac([](auto args){
+ruisapp::application_factory app_fac([](auto executbale, auto args){
 	return std::make_unique<::application>();
 });
