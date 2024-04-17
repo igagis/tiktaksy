@@ -7,7 +7,7 @@ using namespace ruis;
 Gauge::Gauge(const utki::shared_ref<ruis::context>& c, const tml::forest& desc) :
 		widget(c, desc),
 		blending_widget(this->context, desc),
-		fraction_widget(this->context, desc)
+		fraction_widget(this->context, {})
 {
 	bool shadow_attribute_found = false;
 
@@ -82,7 +82,7 @@ void Gauge::render(const matrix4& matrix) const {
 	
 	matrix4 mmm;
 	mmm.set_identity();
-	mmm.rotate(-(this->startAngleRad + (this->endAngleRad - this->startAngleRad) * this->fraction()));
+	mmm.rotate(-(this->startAngleRad + (this->endAngleRad - this->startAngleRad) * this->get_fraction()));
 	{
 		auto div = this->arrowQuadTexture->dims.x() * this->armFraction;
 		ASSERT(div >= 0)

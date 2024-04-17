@@ -53,10 +53,10 @@ public:
 
 		slider->fraction_change_handler = [weakGauge, weakCube](ruis::fraction_widget& s){
 			if(auto g = weakGauge.lock()){
-				g->set_fraction(s.fraction());
+				g->set_fraction(s.get_fraction());
 			}
 			if(auto p = weakCube.lock()){
-				p->spinSpeed = s.fraction();
+				p->spinSpeed = s.get_fraction();
 			}
 		};
 		
