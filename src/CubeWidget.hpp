@@ -2,18 +2,18 @@
 
 #include <ruis/widgets/widget.hpp>
 #include <ruis/updateable.hpp>
-#include <ruis/res/texture.hpp>
+#include <ruis/res/texture_2d.hpp>
 #include <ruis/render/vertex_array.hpp>
 
 class CubeWidget :
 		public ruis::widget,
 		public ruis::updateable
 {
-	std::shared_ptr<ruis::res::texture> tex;
+	std::shared_ptr<ruis::res::texture_2d> tex;
 	
 	ruis::quaternion rot = ruis::quaternion().set_identity();
 public:
-	std::shared_ptr<ruis::vertex_array> cubeVAO;
+	std::shared_ptr<ruis::render::vertex_array> cubeVAO;
 	
 	CubeWidget(const utki::shared_ref<ruis::context>& c, const tml::forest& desc);
 	

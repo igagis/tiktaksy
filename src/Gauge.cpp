@@ -57,11 +57,11 @@ void Gauge::on_lay_out(){
 	
 	auto scale = (std::max(this->rect().d.x(), this->rect().d.y()) / 2) / armLength;
 	
-	this->arrowQuadTexture = this->arrow->get(arrowDim * scale).to_shared_ptr();
+	this->arrowQuadTexture = this->arrow->get(arrowDim.to<ruis::real>() * scale).to_shared_ptr();
 	
 	if(this->shadow){
 		// TRACE(<< "this->shadow->dims() * scale = " << this->shadow->dims() * scale << std::endl)
-		this->shadowQuadTexture = this->shadow->get(this->shadow->dims() * scale).to_shared_ptr();
+		this->shadowQuadTexture = this->shadow->get(this->shadow->dims().to<ruis::real>() * scale).to_shared_ptr();
 		// TRACE(<< "this->shadowQuadTexture->dims() = " << this->shadowQuadTexture->dims() << std::endl)
 	}
 }
@@ -70,7 +70,7 @@ void Gauge::on_lay_out(){
 void Gauge::render(const matrix4& matrix) const {
 	ASSERT(this->arrowQuadTexture)
 	
-	if(!this->arrowQuadTexture->dims.is_positive() || this->armFraction <= 0){
+	if(!this->arrowQuadTexture->dims().is_positive() || this->armFraction <= 0){
 		return;
 	}
 	
@@ -84,19 +84,19 @@ void Gauge::render(const matrix4& matrix) const {
 	mmm.set_identity();
 	mmm.rotate(-(this->startAngleRad + (this->endAngleRad - this->startAngleRad) * this->get_fraction()));
 	{
-		auto div = this->arrowQuadTexture->dims.x() * this->armFraction;
+		auto div = ruis::real(this->arrowQuadTexture->dims().x()) * this->armFraction;
 		ASSERT(div >= 0)
 		mmm.scale(1 / div);
 	}
 	
-	if(this->shadowQuadTexture && this->shadowQuadTexture->dims.is_positive()){
-		auto arrowFraction = this->arrowQuadTexture->dims.x() / this->shadowQuadTexture->dims.x();
+	if(this->shadowQuadTexture && this->shadowQuadTexture->dims().is_positive()){
+		auto arrowFraction = ruis::real(this->arrowQuadTexture->dims().x()) / ruis::real(this->shadowQuadTexture->dims().x());
 		
 		const auto shadowOffset = real(0.025f);
 		
 		matrix4 m(matr);
 		m *= matrix4().set_identity().translate(shadowOffset, shadowOffset) * mmm;
-		m.scale(this->shadowQuadTexture->dims);
+		m.scale(this->shadowQuadTexture->dims().to<ruis::real>());
 		m.translate(-(1 - this->armFraction) * arrowFraction - (1 - arrowFraction) / 2, -0.5);
 		this->shadowQuadTexture->render(m);
 	}
@@ -104,7 +104,7 @@ void Gauge::render(const matrix4& matrix) const {
 	{
 		matrix4 m(matr);
 		m *= mmm;
-		m.scale(this->arrowQuadTexture->dims);
+		m.scale(this->arrowQuadTexture->dims().to<ruis::real>());
 		m.translate(-(1 - this->armFraction), -0.5);
 		this->arrowQuadTexture->render(m);
 	}

@@ -68,8 +68,8 @@ public:
 				c
 			);
 
-#if M_OS_NAME == M_OS_NAME_ANDROID
-		this->setFullscreen(true);
+#if CFG_OS_NAME == CFG_OS_NAME_ANDROID
+		this->set_fullscreen(true);
 #endif
 
 	}

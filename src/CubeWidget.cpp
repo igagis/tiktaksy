@@ -66,9 +66,9 @@ CubeWidget::CubeWidget(const utki::shared_ref<ruis::context>& c, const tml::fore
 
 	auto cubeIndices = this->context.get().renderer.get().factory->create_index_buffer(utki::make_span(indices));
 
-	this->cubeVAO = this->context.get().renderer.get().factory->create_vertex_array({posVBO, texVBO}, cubeIndices, ruis::vertex_array::mode::triangles).to_shared_ptr();
+	this->cubeVAO = this->context.get().renderer.get().factory->create_vertex_array({posVBO, texVBO}, cubeIndices, ruis::render::vertex_array::mode::triangles).to_shared_ptr();
 
-	this->tex = this->context.get().loader.load<ruis::res::texture>("tex_sample").to_shared_ptr();
+	this->tex = this->context.get().loader.load<ruis::res::texture_2d>("tex_sample").to_shared_ptr();
 	this->rot.set_identity();
 
 
