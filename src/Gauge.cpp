@@ -82,7 +82,7 @@ void Gauge::render(const matrix4& matrix) const {
 	
 	matrix4 mmm;
 	mmm.set_identity();
-	mmm.rotate(-(this->startAngleRad + (this->endAngleRad - this->startAngleRad) * this->get_fraction()));
+	mmm.rotate(ruis::quat(-(this->startAngleRad + (this->endAngleRad - this->startAngleRad) * this->get_fraction())));
 	{
 		auto div = ruis::real(this->arrowQuadTexture->dims().x()) * this->armFraction;
 		ASSERT(div >= 0)

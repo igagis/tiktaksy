@@ -1,8 +1,8 @@
 #pragma once
 
-#include <ruis/widgets/widget.hpp>
-#include <ruis/widgets/base/blending_widget.hpp>
-#include <ruis/widgets/base/fraction_widget.hpp>
+#include <ruis/widget/widget.hpp>
+#include <ruis/widget/base/blending_widget.hpp>
+#include <ruis/widget/base/fraction_widget.hpp>
 
 #include <ruis/res/image.hpp>
 

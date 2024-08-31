@@ -1,7 +1,7 @@
 #include <ruisapp/application.hpp>
-#include <ruis/widgets/slider/scroll_bar.hpp>
-#include <ruis/widgets/button/base/push_button.hpp>
-#include <ruis/widgets/slider/scroll_bar.hpp>
+#include <ruis/widget/slider/scroll_bar.hpp>
+#include <ruis/widget/button/base/push_button.hpp>
+#include <ruis/widget/slider/scroll_bar.hpp>
 
 #include "Gauge.hpp"
 #include "CubeWidget.hpp"
@@ -46,7 +46,7 @@ public:
 				if(p->is_updating()){
 					this->gui.context.get().updater.get().stop(*p);
 				}else{
-					this->gui.context.get().updater.get().start(p);
+					this->gui.context.get().updater.get().start(utki::shared_ref(p));
 				}
 			}
 		};

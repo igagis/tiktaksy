@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ruis/widgets/widget.hpp>
+#include <ruis/widget/widget.hpp>
 #include <ruis/updateable.hpp>
 #include <ruis/res/texture_2d.hpp>
 #include <ruis/render/vertex_array.hpp>
